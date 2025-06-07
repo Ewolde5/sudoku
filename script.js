@@ -216,8 +216,14 @@ function saveState() {
 
 function loadState() {
   const saved = localStorage.getItem('sudoku-state');
-  if (saved) {
-    setGridValues(JSON.parse(saved));
+  try {
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      setGridValues(parsed);
+    }
+  } catch (e) {
+    console.warn('Ongeldige localStorage-waarde — resetten.');
+    localStorage.removeItem('sudoku-state');
   }
 }
 
