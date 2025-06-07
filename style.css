@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background: #222;
+  color: #eee;
+}
+
+.controls {
+  margin-bottom: 15px;
+}
+
+button, select {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
+#sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  grid-template-rows: repeat(9, 40px);
+  gap: 2px;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.cell {
+  border: 1px solid #ccc;
+  position: relative;
+  background-color: white;
+}
+
+.dark .cell {
+  background-color: #444;
+}
+
+.cell input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  background: transparent;
+  color: inherit;
+}
+
+.cell.notes input {
+  font-size: 10px;
+  color: gray;
+}
+
+.cell.invalid input {
+  background-color: #fbb;
+}
+
+.cell.highlight input {
+  background-color: #bbf;
+}
+
+#status {
+  margin-top: 10px;
+}
+
+#timer {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  #sudoku-grid {
+    grid-template-columns: repeat(9, 8vw);
+    grid-template-rows: repeat(9, 8vw);
+  }
+}

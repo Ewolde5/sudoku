@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sudoku Web App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Sudoku</h1>
+  <div class="controls">
+    <button id="toggle-notes">Aantekeningen: Uit</button>
+    <select id="difficulty">
+      <option value="easy">Makkelijk</option>
+      <option value="medium">Gemiddeld</option>
+      <option value="hard">Moeilijk</option>
+    </select>
+    <button id="validate">Controleer</button>
+    <button id="solve">Oplossen</button>
+    <button id="reset">Reset</button>
+    <button id="generate">Nieuwe puzzel</button>
+    <button id="toggle-theme">🌙 Donkere modus</button>
+  </div>
+  <div id="sudoku-grid"></div>
+  <div id="status"></div>
+  <div id="timer">⏱️ 00:00</div>
+  <script src="script.js"></script>
+</body>
+</html>
