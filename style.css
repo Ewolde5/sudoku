@@ -20,26 +20,81 @@ button, select {
   font-size: 14px;
 }
 
+/* Verbetering 5: dikke buitenrand + geen gap zodat alleen cel-borders tellen */
 #sudoku-grid {
   display: grid;
   grid-template-columns: repeat(9, 40px);
   grid-template-rows: repeat(9, 40px);
-  gap: 2px;
+  gap: 0;
   justify-content: center;
   margin: 0 auto;
   max-width: 100%;
+  border: 2px solid #333;
 }
 
+.dark #sudoku-grid {
+  border-color: #aaa;
+}
+
+/* Elke cel heeft alleen rechter- en onderrand; buitenrand van grid dekt de rest */
 .cell {
-  border: 1px solid #ccc;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
   position: relative;
   background-color: white;
+  box-sizing: border-box;
+}
+
+/* Verwijder dubbele rand bij laatste kolom/rij (grid-border dekt die kant) */
+.cell:nth-child(9n) {
+  border-right: none;
+}
+.cell:nth-last-child(-n+9) {
+  border-bottom: none;
+}
+
+/* Verbetering 5: dikke grenzen na kolom 2, 5 en rij 2, 5 */
+.cell.box-right {
+  border-right: 2px solid #555;
+}
+.cell.box-bottom {
+  border-bottom: 2px solid #555;
 }
 
 .dark .cell {
   background-color: #444;
+  border-color: #666;
+}
+.dark .cell.box-right {
+  border-right-color: #bbb;
+}
+.dark .cell.box-bottom {
+  border-bottom-color: #bbb;
 }
 
+/* Verbetering 6: gegeven (puzzle) cellen zien er anders uit */
+.cell.given {
+  background-color: #eef0f5;
+}
+.dark .cell.given {
+  background-color: #3a3d4a;
+}
+
+.cell.invalid {
+  background-color: #fbb !important;
+}
+.dark .cell.invalid {
+  background-color: #622 !important;
+}
+
+.cell.highlight {
+  background-color: #d6e4ff;
+}
+.dark .cell.highlight {
+  background-color: #334;
+}
+
+/* Verbetering 10: outline:none verwijdert ongewenste focus-ring */
 .cell input {
   width: 100%;
   height: 100%;
@@ -48,6 +103,14 @@ button, select {
   font-size: 18px;
   background: transparent;
   color: inherit;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.cell.given input {
+  font-weight: bold;
+  cursor: default;
 }
 
 .cell.notes input {
@@ -56,15 +119,15 @@ button, select {
 }
 
 .cell.invalid input {
-  background-color: #fbb;
+  color: #900;
 }
-
-.cell.highlight input {
-  background-color: #bbf;
+.dark .cell.invalid input {
+  color: #faa;
 }
 
 #status {
   margin-top: 10px;
+  font-size: 16px;
 }
 
 #timer {
@@ -76,5 +139,9 @@ button, select {
   #sudoku-grid {
     grid-template-columns: repeat(9, 8vw);
     grid-template-rows: repeat(9, 8vw);
+  }
+
+  .cell input {
+    font-size: 14px;
   }
 }
